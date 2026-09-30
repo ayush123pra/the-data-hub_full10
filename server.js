@@ -32,7 +32,7 @@ app.post('/login', (req, res) => {
     }
 
     // Mock credential check
-    if (username === 'raushan' && password === 'test123') {
+    if (username === 'Ayush' && password === 'test123') {
         return res.status(200).json({
             message: "Login successful",
             token: "mock-jwt-token-123456"
