@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 
 function App() {
+  // This line dynamically sets the API URL. 
+  // It uses the Vercel environment variable if deployed, otherwise it falls back to localhost.
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
   const [posts, setPosts] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -8,9 +12,10 @@ function App() {
   const [editId, setEditId] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Fetch all posts from the backend
   const fetchPosts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/posts');
+      const response = await fetch(`${API_URL}/posts`);
       const data = await response.json();
       
       if (Array.isArray(data)) {
@@ -30,6 +35,7 @@ function App() {
     fetchPosts();
   }, []);
 
+  // Handle form submission for creating or updating a post
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !content || !author) return alert('All fields are required!');
@@ -38,20 +44,23 @@ function App() {
 
     try {
       if (editId) {
-        await fetch(`http://localhost:5000/posts/${editId}`, {
+        // Update existing post
+        await fetch(`${API_URL}/posts/${editId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(postData),
         });
         setEditId(null);
       } else {
-        await fetch('http://localhost:5000/posts', {
+        // Create a new post
+        await fetch(`${API_URL}/posts`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(postData),
         });
       }
 
+      // Clear input fields and refresh the posts list
       setTitle('');
       setContent('');
       setAuthor('');
@@ -61,9 +70,10 @@ function App() {
     }
   };
 
+  // Handle deleting a post
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/posts/${id}`, {
+      await fetch(`${API_URL}/posts/${id}`, {
         method: 'DELETE',
       });
       fetchPosts();
@@ -72,6 +82,7 @@ function App() {
     }
   };
 
+  // Populate the form fields when editing a post
   const handleEditClick = (post) => {
     setEditId(post._id);
     setTitle(post.title);
