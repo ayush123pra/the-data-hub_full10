@@ -1,23 +1,28 @@
-# The Data Hub API - Sprint 9
+# The Data Hub - MERN Stack CRUD Application
 
-A RESTful backend API built with Node.js and Express.js. This project demonstrates core backend concepts including server scaffolding, routing, in-memory CRUD operations, custom middleware, and basic mock authentication.
+A full-stack Web Application built using the MERN stack (MongoDB, Express.js, React.js, Node.js). This project allows users to seamlessly Create, Read, Update, and Delete posts in real-time.
 
-## 🚀 Features
+## 🚀 Live Demo
+* **Frontend (Vercel):** [Insert your Vercel Link here]
+* **Backend API (Render):** [Insert your Render Link here]
 
-- **Health Check Endpoint:** Simple root endpoint to verify server status.
-- **In-Memory CRUD:** Create, Read, Update, and Delete blog posts using an in-memory data array.
-- **Custom Request Logger:** Global middleware that intercepts and logs all incoming HTTP requests with timestamps.
-- **Mock Authentication:** A `/login` endpoint to simulate a login flow using hardcoded credentials, returning a mock JWT token.
-- **Error Handling:** Global 404 handler for invalid routes and proper HTTP status codes for invalid requests.
+## ✨ Features
+* **Create:** Add new posts with a Title, Content, and Author name.
+* **Read:** Fetch and display all posts instantly from the database.
+* **Update:** Edit existing posts seamlessly.
+* **Delete:** Remove posts with a single click.
+* **Responsive UI:** Clean, dark-themed user interface.
 
 ## 🛠️ Tech Stack
+* **Frontend:** React (Vite), JavaScript, CSS
+* **Backend:** Node.js, Express.js
+* **Database:** MongoDB Atlas
+* **Deployment:** Vercel (Frontend), Render (Backend)
 
-- **Runtime:** Node.js
-- **Framework:** Express.js
-- **Testing Tools:** Thunder Client / Postman
+## ⚙️ Environment Variables (Local Setup)
+To run this project locally, create a `.env` file in both frontend and backend directories:
 
-## ⚙️ Setup and Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repository-url>
+**Backend (`.env`)**
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
